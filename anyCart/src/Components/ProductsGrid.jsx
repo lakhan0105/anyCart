@@ -3,14 +3,18 @@ import { useLoaderData, useNavigation } from "react-router-dom";
 import ProductCard from "./ProductCard";
 
 function ProductsGrid() {
+  // grab the products data from loader
   const { products } = useLoaderData();
-  console.log(products);
 
+  // setup loading when state==="loading"
   const nav = useNavigation();
-  console.log(nav);
-
   if (nav.state === "loading") {
     return <h2>Loading...</h2>;
+  }
+
+  // if no results found
+  if (products.length < 1) {
+    return <h2>Sorry, no items matched your search!</h2>;
   }
 
   return (

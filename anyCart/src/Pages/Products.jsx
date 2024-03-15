@@ -1,20 +1,33 @@
-import axios from "axios";
 import React from "react";
 import custFetch from "../utilities/custFetch";
 import ProductsGrid from "../Components/ProductsGrid";
-import { useNavigation } from "react-router-dom";
+import { SectionTitle } from "../Components";
+import FiltersContainer from "../Components/FiltersContainer";
 
-const url = "";
+// url
+const url = "/products";
 
-export const loader = async () => {
-  const resp = await custFetch.get(url);
-  return { products: resp.data.data };
+export const loader = async ({ request }) => {
+  // grab the params from the url
+  const params = Object.fromEntries([
+    ...new URL(request.url).searchParams.entries(),
+  ]);
+
+  const resp = await custFetch.get(url, { params });
+  const products = resp.data.data;
+  const meta = resp.data.meta;
+
+  return { products: products, meta: meta, params };
 };
 
 function Products() {
   return (
     <>
-      <ProductsGrid></ProductsGrid>
+      <SectionTitle title="our products" />
+      <div className="products">
+        <FiltersContainer />
+        <ProductsGrid></ProductsGrid>
+      </div>
     </>
   );
 }

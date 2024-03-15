@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "https://strapi-store-server.onrender.com/api/products";
+const url = "https://strapi-store-server.onrender.com/api";
 
 const custFetch = axios.create({
   baseURL: url,

@@ -18,8 +18,9 @@ import {
   Error,
 } from "./Pages/index.js";
 
-import { loader as featuredProductsLoader } from "./Pages/Products.jsx";
+import { loader as featuredProductsLoader } from "./Pages/Landing.jsx";
 import { loader as productsLoader } from "./Pages/Products.jsx";
+import { loader as singleProductLoader } from "./Pages/SingleProductPage.jsx";
 
 // router
 const router = createBrowserRouter(
@@ -35,12 +36,18 @@ const router = createBrowserRouter(
         loader={featuredProductsLoader}
       ></Route>
       <Route path="/about" element={<About />}></Route>
+
       <Route
         path="/products"
         element={<Products />}
         loader={productsLoader}
       ></Route>
-      <Route path="/products/:id" element={<SingleProductPage />}></Route>
+
+      <Route
+        path="/products/:id"
+        element={<SingleProductPage />}
+        loader={singleProductLoader}
+      ></Route>
       <Route path="/cart" element={<Cart />}></Route>
     </Route>
   )
