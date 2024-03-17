@@ -6,8 +6,8 @@ function FormSelect({ label, type, name, defaultValue, list }) {
       <label className="form-label" htmlFor={name}>
         {label}
       </label>
-      {/* <input type={type} name={name} id={name} defaultValue={defaultValue} /> */}
-      <select name={name} id={name}>
+
+      <select name={name} id={name} defaultValue={defaultValue}>
         {list.map((item) => {
           return (
             <option value={item} key={item}>

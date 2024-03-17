@@ -1,8 +1,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 function NavContainer() {
+  const totalCartItems = useSelector((state) => state.cartState.totalCartItems);
+
   return (
     <div className="nav-container">
       <nav className="nav center">
@@ -32,6 +35,7 @@ function NavContainer() {
           <li className="cart-link">
             <NavLink to="/cart">
               <FaShoppingCart />
+              <p>{totalCartItems}</p>
             </NavLink>
           </li>
         </ul>

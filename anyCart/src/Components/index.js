@@ -5,3 +5,7 @@ export { default as FeaturedProducts } from "./FeaturedProducts";
 export { default as SectionTitle } from "./SectionTitle";
 export { default as FormSelect } from "./FormSelect";
 export { default as FormCheckbox } from "./FormCheckbox";
+export { default as PaginationContainer } from "./PaginationContainer";
+export { default as CartItemsList } from "./CartItemsList";
+export { default as CartTotalsContainer } from "./CartTotalsContainer";
+export { default as CartContainer } from "./CartContainer";

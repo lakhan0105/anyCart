@@ -1,7 +1,7 @@
 import React from "react";
 import custFetch from "../utilities/custFetch";
 import ProductsGrid from "../Components/ProductsGrid";
-import { SectionTitle } from "../Components";
+import { PaginationContainer, SectionTitle } from "../Components";
 import FiltersContainer from "../Components/FiltersContainer";
 
 // url
@@ -28,6 +28,7 @@ function Products() {
         <FiltersContainer />
         <ProductsGrid></ProductsGrid>
       </div>
+      <PaginationContainer />
     </>
   );
 }

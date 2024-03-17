@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useId, useState } from "react";
 import { Form, useLoaderData, useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";
 
 function SingleProduct() {
   const { product } = useLoaderData();
   const { id, attributes } = product;
-
   const { colors, company, description, image, price, title } = attributes;
 
-  const [selectedColor, setSelectedColor] = useState();
+  // state for colors and products count
+  const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [productCount, setProductCount] = useState(1);
 
   // handleColor
@@ -17,8 +19,26 @@ function SingleProduct() {
 
   // handleProductCount
   function handleProductCount(e) {
-    const count = Number(e.target.value);
-    setProductCount(count);
+    setProductCount(parseInt(e.target.value));
+  }
+
+  const val = useSelector((state) => state.cartState);
+  const dispatch = useDispatch();
+
+  const newCartItem = {
+    cartID: `${id}${selectedColor}`,
+    productID: id,
+    title,
+    image,
+    company,
+    price,
+    selectedColor,
+    productCount,
+  };
+
+  // addToCart
+  function addToCart() {
+    dispatch(addItem({ product: newCartItem }));
   }
 
   return (
@@ -73,6 +93,8 @@ function SingleProduct() {
               </select>
             </Form>
           </div>
+
+          <button onClick={addToCart}>add to cart</button>
         </div>
       </div>
     </section>
