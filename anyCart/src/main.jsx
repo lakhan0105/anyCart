@@ -24,6 +24,14 @@ import {
 import { loader as featuredProductsLoader } from "./Pages/Landing.jsx";
 import { loader as productsLoader } from "./Pages/Products.jsx";
 import { loader as singleProductLoader } from "./Pages/SingleProductPage.jsx";
+import SingleErrorEl from "./Pages/SingleErrorEl.jsx";
+import Register from "./Pages/Register.jsx";
+import Login from "./Pages/Login.jsx";
+
+// actions
+import { action as registerAction } from "./Pages/Register.jsx";
+import { action as loginAction } from "./Pages/Login.jsx";
+import Checkout from "./Pages/Checkout.jsx";
 
 // router
 const router = createBrowserRouter(
@@ -37,6 +45,7 @@ const router = createBrowserRouter(
         index
         element={<Landing></Landing>}
         loader={featuredProductsLoader}
+        errorElement={<SingleErrorEl />}
       ></Route>
       <Route path="/about" element={<About />}></Route>
 
@@ -52,6 +61,20 @@ const router = createBrowserRouter(
         loader={singleProductLoader}
       ></Route>
       <Route path="/cart" element={<Cart />}></Route>
+
+      <Route
+        path="/login"
+        element={<Login />}
+        action={loginAction(store)}
+      ></Route>
+
+      <Route
+        path="/register"
+        element={<Register />}
+        action={registerAction}
+      ></Route>
+
+      <Route path="/checkout" element={<Checkout />}></Route>
     </Route>
   )
 );

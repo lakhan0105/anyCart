@@ -1,11 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart } from "../features/cart/cartSlice";
+import { Link, NavLink } from "react-router-dom";
 
 function CartTotalsContainer() {
   const { cartTotal, shipping, tax, orderTotal } = useSelector(
     (state) => state.cartState
   );
+  const { user } = useSelector((state) => state.userState);
 
   const dispatch = useDispatch();
 
@@ -35,6 +37,19 @@ function CartTotalsContainer() {
       <button className="btn clear-cart-btn" onClick={handleClearCart}>
         clear cart
       </button>
+
+      {/* PAYMENT */}
+      {user ? (
+        <Link to={"/checkout"}>
+          <button className="btn hero-btn">Proceed to payment</button>
+        </Link>
+      ) : (
+        <>
+          <NavLink to="/login">
+            <button className="btn">please login</button>
+          </NavLink>
+        </>
+      )}
     </div>
   );
 }
